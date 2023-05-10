@@ -5,7 +5,7 @@ from .models import Projects, Task
 # Create your views here.
 
 def index(request):
-    return HttpResponse("<h2>index page </h2>")
+    return render(request, 'index.html')
     
 
 def hello(request, username):
@@ -13,13 +13,13 @@ def hello(request, username):
     return HttpResponse("<h1>Hello %s</h1>" %username)
 
 def about(request):
-    return HttpResponse("<h2>About </h2>")
+    return render(request, 'about.html')
 
 
 def projects(request):
     projects = list(Projects.objects.values())
-    return JsonResponse(projects, safe=False)
+    return render(request, 'projects.html')
 
-def tasks(request, id):
-    tasks = get_object_or_404(Task, id=id)
-    return HttpResponse("tasks: %s"  %tasks.title )
+def tasks(request):
+    #tasks = get_object_or_404(Task, id=id)
+    return render(request, 'task.html')
