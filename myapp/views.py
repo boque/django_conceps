@@ -5,7 +5,10 @@ from .models import Projects, Task
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    title = 'Django Course!!'
+    return render(request, 'index.html', {
+        'title':title
+    })
     
 
 def hello(request, username):
@@ -17,9 +20,13 @@ def about(request):
 
 
 def projects(request):
-    projects = list(Projects.objects.values())
-    return render(request, 'projects.html')
+    projects = Projects.objects.all()
+    return render(request, 'projects.html', {
+        'projects': projects
+    })
 
 def tasks(request):
-    #tasks = get_object_or_404(Task, id=id)
-    return render(request, 'task.html')
+    tasks = Task.objects.all()
+    return render(request, 'task.html', {
+        'tasks': tasks
+    })
